@@ -1,0 +1,974 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ===== Navigation ===== */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    z-index: 1000;
+    padding: 0 2rem;
+    height: 70px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-left {
+    margin-right: auto;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+}
+
+/* ===== Réseaux Sociaux avec icônes ===== */
+.reseau {
+    display: flex;
+    gap: 1rem;
+    margin-left: 2rem;
+}
+
+.reseau a img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.reseau a:hover img {
+    transform: scale(1.1);
+}
+
+/* ===== Burger Menu ===== */
+.burger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    margin-left: auto;
+}
+
+.burger span {
+    width: 25px;
+    height: 3px;
+    background: black;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.burger.toggle span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger.toggle span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.toggle span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ===== Hero Section ===== */
+#Acceuil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(to bottom, #6a11cb, #2575fc);
+    height: 100vh;
+    padding: 40vh 0 0 0;
+    position: relative;
+    overflow: hidden;
+}
+
+#Acceuil h1,
+#Acceuil p,
+#Acceuil a {
+    color: white;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#Acceuil h1 {
+    font-size: 3rem;
+}
+
+#Acceuil p {
+    font-size: 2rem;
+}
+
+#Acceuil a {
+    color: rgba(0, 0, 100);
+    font-size: 2rem;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+}
+
+/* ===== Animated Accueil Elements ===== */
+.fade-slide {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeSlide 1s forwards;
+}
+
+.delay1 {
+    animation-delay: 0.3s;
+}
+
+.delay2 {
+    animation-delay: 0.6s;
+}
+
+.animated-button {
+    position: relative;
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    color: white;
+    background: linear-gradient(135deg, #f39c12, #f1c40f);
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(243, 156, 18, 0.5);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.animated-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 150%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-45deg);
+    transition: left 0.5s ease;
+    z-index: 0;
+}
+
+.animated-button:hover::after {
+    left: 100%;
+}
+
+.animated-button:hover {
+    background: linear-gradient(135deg, #f1c40f, #f39c12);
+    box-shadow: 0 6px 20px rgba(243, 156, 18, 0.6);
+    color: white;
+}
+
+/* ===== Floating Bubbles ===== */
+.floating-bubble {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: float 3s ease-in-out infinite;
+    z-index: 0;
+}
+
+/* ===== Services Section ===== */
+#Services {
+    padding: 4rem 2rem;
+    background: linear-gradient(to bottom, #f1f8ff, #ffffff);
+    text-align: center;
+}
+
+#Services h2 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+#Services p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 3rem;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+}
+
+.service-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInCard 0.8s ease forwards;
+    animation-delay: 0.2s;
+    min-height: 300px;
+}
+
+@keyframes fadeInCard {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.service-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.service-card img {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+    margin-bottom: 0.8rem;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    color: #2575fc;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.service-card p {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 0.3rem;
+}
+
+.service-card .prix {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    font-weight: bold;
+    color: #f39c12;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+
+.service-card:hover .prix {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.service-card::after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 50px;
+    margin: 0.8rem auto 0 auto;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    border-radius: 2px;
+}
+
+
+/* ===== Les Étapes Section ===== */
+#LesEtapes {
+    background: linear-gradient(to bottom, #2575fc, #6a11cb);
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+#LesEtapes h2,
+#LesEtapes > p {
+    color: white;
+     
+}
+
+
+.etape {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin: 3rem 0;
+    padding: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeEtape 1s forwards;
+}
+
+.etape:nth-child(2) { animation-delay: 0.3s; }
+.etape:nth-child(3) { animation-delay: 0.6s; }
+.etape:nth-child(4) { animation-delay: 0.9s; }
+
+@keyframes fadeEtape {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.etape-gauche {
+    flex-direction: row;
+}
+
+.etape-droite {
+    flex-direction: row-reverse;
+}
+
+.etape img {
+    width: 150px;
+    max-width: 50%;
+    height: auto;
+    object-fit: contain;
+}
+
+.texte-etape {
+    max-width: 500px;
+    text-align: left;
+}
+
+.texte-etape h3 {
+    font-size: 1.6rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.texte-etape p {
+    font-size: 1rem;
+    color: #f0f0f0;
+    line-height: 1.6;
+}
+
+.separateur {
+    width: 4px;
+    height: 100px;
+    background: linear-gradient(to bottom, #1b5e20, #2e7d32); /* vert foncé élégant */
+    border-radius: 2px;
+}
+
+
+
+/* ===== Mission Section Style ===== */
+.section-mission {
+    padding: 4rem 2rem;
+    background: hsl(0, 0%, 100%);
+}
+
+.mission-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: auto;
+    flex-wrap: wrap;
+}
+
+.mission-logo {
+    width: 350px;
+    max-width: 40%;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.mission-text {
+    flex: 1;
+    text-align: left;
+}
+
+.mission-text h2 {
+    font-size: 2rem;
+    color: #2575fc;
+    margin-bottom: 1rem;
+}
+
+.mission-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 1rem;
+}
+
+/* ==== Sphère 3D Animation ==== */
+.sphere-container {
+    width: 300px;
+    height: 300px;
+    flex-shrink: 0;
+}
+
+.scene {
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
+}
+
+.sphere {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: spin 10s infinite linear;
+}
+
+.face {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.front  { background-image: url('https://source.unsplash.com/random/150x150/?tech,1'); transform: rotateY(0deg) translateZ(75px); }
+.back   { background-image: url('https://source.unsplash.com/random/150x150/?tech,2'); transform: rotateY(180deg) translateZ(75px); }
+.right  { background-image: url('https://source.unsplash.com/random/150x150/?tech,3'); transform: rotateY(90deg) translateZ(75px); }
+.left   { background-image: url('https://source.unsplash.com/random/150x150/?tech,4'); transform: rotateY(-90deg) translateZ(75px); }
+.top    { background-image: url('https://source.unsplash.com/random/150x150/?tech,5'); transform: rotateX(90deg) translateZ(75px); }
+.bottom { background-image: url('https://source.unsplash.com/random/150x150/?tech,6'); transform: rotateX(-90deg) translateZ(75px); }
+
+@keyframes spin {
+    0%   { transform: rotateX(0) rotateY(0); }
+    100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .sphere-container {
+    margin-top: 2rem;
+    width: 200px;
+    height: 200px;
+  }
+}
+
+
+
+/* ===== Formation Section Style ===== */
+.section-formation {
+    padding: 4rem 2rem;
+    background: #f1f8ff
+}
+
+.formation-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: auto;
+    flex-wrap: wrap;
+}
+
+.formation-text {
+    flex: 1;
+    text-align: left;
+}
+
+.formation-text h2 {
+    font-size: 2rem;
+    color: #2575fc;
+    margin-bottom: 1rem;
+}
+
+.formation-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 1rem;
+}
+
+.formation-image {
+    flex-shrink: 0;
+}
+
+.formation-image img {
+    max-width: 400px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation apparition douce */
+.fade-slide {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeSlide 1s ease forwards;
+}
+
+.delay1 { animation-delay: 0.3s; }
+.delay2 { animation-delay: 0.6s; }
+.delay3 { animation-delay: 0.9s; }
+
+@keyframes fadeSlide {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ===== Contact Section ===== */
+.section-contact {
+    background: linear-gradient(to bottom, #2575fc, #6a11cb);
+    padding: 4rem 2rem;
+    color: white;
+}
+
+.contact-container {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+
+.contact-info h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.contact-info p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: white; /* fond opaque */
+    color: #333;
+}
+
+/* Placeholders en gris pour contraste */
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #666;
+    opacity: 1;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+    background-color: white; /* reste blanc même au focus */
+    color: #000;
+}
+
+/* Bouton déjà animé, bien centré */
+.contact-form button.animated-button {
+    align-self: center;
+    margin-top: 1rem;
+}
+
+
+
+/* ===== Footer ===== */
+
+.site-footer {
+    background: #1b1b1b;
+    color: #f0f0f0;
+    padding: 3rem 2rem;
+    text-align: center;
+    border-top: 1px solid #333;
+}
+
+.footer-container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.footer-container p {
+    margin-bottom: 1.2rem;
+    color: #cccccc;
+    font-size: 0.95rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.footer-links a {
+    color: #f0f0f0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #f39c12;
+}
+
+
+
+
+
+/* Responsive pour Les Étapes */
+@media screen and (max-width: 768px) {
+    .etape {
+        flex-direction: column !important;
+        text-align: center;
+    }
+
+    .separateur {
+        width: 60%;
+        height: 3px;
+        margin: 1rem 0;
+        background: linear-gradient(to right, #6a11cb, #2575fc);
+    }
+
+    .texte-etape {
+        max-width: 100%;
+        text-align: center;
+    }
+    
+}
+
+
+/* ===== Autres Sections ===== */
+#Mission,
+#A propos,
+#Contact {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+#LesEtapes img,
+#Mission img,
+#A propos img,
+#Contact img {
+    max-width: 50%;
+    height: auto;
+}
+
+h2,
+h3 {
+    font-size: 2rem;
+}
+
+#LesEtapes p,
+#Mission p,
+#A propos p {
+    font-size: 1.2rem;
+}
+
+/* ===== Form & Button ===== */
+input,
+textarea {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #6a11cb;
+}
+
+/* ===== Footer ===== */
+footer {
+    background-color: #f8f8f8;
+    padding: 2rem;
+    text-align: center;
+}
+
+footer a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 1rem;
+}
+
+
+/* ===== Responsive ===== */
+@media screen and (max-width: 768px) {
+    #Acceuil h1 {
+        font-size: 2rem;
+    }
+
+    #Acceuil p {
+        font-size: 1.2rem;
+    }
+
+    #Acceuil a {
+        font-size: 1.1rem;
+        padding: 10px 20px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        padding: 0 1rem;
+    }
+
+    .navigation {
+        width: 100%;
+        order: 3;
+    }
+
+    .navigation ul {
+        flex-direction: column;
+        width: 100%;
+        background: white;
+        border-top: 1px solid #ddd;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.4s ease;
+    }
+
+    .navigation ul.active {
+        display: flex;
+        max-height: 400px;
+        padding: 1rem 0;
+    }
+
+    .burger {
+        display: flex;
+    }
+
+    .reseau {
+        display: none;
+    }
+
+    /* ===== Étapes Responsive (modifié) ===== */
+    .etape {
+        display: flex;
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1rem;
+        padding: 1rem;
+        flex-wrap: nowrap;
+        text-align: left;
+    }
+
+    .etape img {
+        width: 80px;
+        height: auto;
+        object-fit: contain;
+        flex-shrink: 0;
+    }
+
+    .texte-etape {
+        flex: 1;
+        text-align: left;
+        max-width: 100%;
+    }
+
+    .texte-etape h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .texte-etape p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    .separateur {
+        width: 4px;
+        height: 70px;
+        background: linear-gradient(to bottom, #6a11cb, #2575fc);
+        border-radius: 2px;
+        flex-shrink: 0;
+    }
+    .mission-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .mission-logo {
+        width: 150px;
+        margin-bottom: 1rem;
+    }
+
+    .mission-text {
+        text-align: center;
+    }
+    .formation-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .formation-text {
+        text-align: center;
+    }
+
+    .formation-image img {
+        max-width: 80%;
+    }
+    .contact-container {
+        padding: 1rem;
+    }
+
+    
+}
+
+/* ===== Keyframes ===== */
+@keyframes fadeSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* ===== Ultra Mobile ===== */
+@media screen and (max-width: 300px) {
+    nav {
+        flex-direction: column;
+        padding: 0.5rem;
+    }
+
+    nav ul {
+        gap: 0.5rem;
+    }
+
+    #Acceuil {
+        padding: 15vh 0 0 0;
+    }
+
+    #Acceuil h1 {
+        font-size: 2.5rem;
+    }
+
+    #Acceuil p {
+        font-size: 1.5rem;
+    }
+
+    #Acceuil a {
+        font-size: 1.5rem;
+    }
+
+    .service-card img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .service-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .service-card p {
+        font-size: 0.95rem;
+    }
+
+    nav ul li a {
+        font-size: 0.8rem;
+    }
+
+    /* ===== Étapes Ultra Mobile (modifié) ===== */
+    .etape {
+        display: flex;
+        flex-direction: row !important;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        flex-wrap: nowrap;
+        text-align: left;
+    }
+
+    .etape img {
+        width: 60px;
+        height: auto;
+        object-fit: contain;
+        flex-shrink: 0;
+    }
+
+    .texte-etape {
+        flex: 1;
+        text-align: left;
+        max-width: 100%;
+    }
+
+    .texte-etape h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .texte-etape p {
+        font-size: 0.7rem;
+        line-height: 1.3;
+    }
+
+    .separateur {
+        width: 3px;
+        height: 60px;
+        background: linear-gradient(to bottom, #6a11cb, #2575fc);
+        border-radius: 2px;
+        flex-shrink: 0;
+    }
+}
+
+
